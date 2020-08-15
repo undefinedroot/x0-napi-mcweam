@@ -35,7 +35,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/1",
+							"raw": "{{URL}}/api/v1/bootcamps/5f373020d3b55d1780108b8f",
 							"host": [
 								"{{URL}}"
 							],
@@ -43,7 +43,7 @@
 								"api",
 								"v1",
 								"bootcamps",
-								"1"
+								"5f373020d3b55d1780108b8f"
 							]
 						},
 						"description": "Get single bootcamp by ID"
@@ -54,17 +54,27 @@
 					"name": "Create New Bootcamp",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Devcentral Bootcamp\",\r\n\t\t\"description\": \"Is coding your passion? Codemasters will give you the skills and the tools to become the best developer possible. We specialize in front end and full stack web development\",\r\n\t\t\"website\": \"https://devcentral.com\",\r\n\t\t\"phone\": \"(444) 444-4444\",\r\n\t\t\"email\": \"enroll@devcentral.com\",\r\n\t\t\"address\": \"45 Upper College Rd Kingston RI 02881\",\r\n\t\t\"careers\": [\r\n\t\t\t\"Mobile Development\",\r\n\t\t\t\"Web Development\",\r\n\t\t\t\"Data Science\",\r\n\t\t\t\"Business\"\r\n\t\t],\r\n\t\t\"housing\": false,\r\n\t\t\"jobAssistance\": true,\r\n\t\t\"jobGuarantee\": true,\r\n\t\t\"acceptGi\": true\r\n}"
+						},
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/1",
+							"raw": "{{URL}}/api/v1/bootcamps",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"bootcamps",
-								"1"
+								"bootcamps"
 							]
 						},
 						"description": "Add new bootcamp to database. Must be authenticated and must be publisher or admin"
@@ -75,9 +85,20 @@
 					"name": "Update Bootcamp",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"housing\": false,\r\n    \"careers\": [\"Web Development\",\"UI/UX\"]\r\n}"
+						},
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/1",
+							"raw": "{{URL}}/api/v1/bootcamps/5f373020d3b55d1780108b8f",
 							"host": [
 								"{{URL}}"
 							],
@@ -85,7 +106,7 @@
 								"api",
 								"v1",
 								"bootcamps",
-								"1"
+								"5f373020d3b55d1780108b8f"
 							]
 						},
 						"description": "Update single bootcamp in database"
@@ -96,9 +117,16 @@
 					"name": "Delete Bootcamp",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/1",
+							"raw": "{{URL}}/api/v1/bootcamps/5f373403d669f01040c87b91",
 							"host": [
 								"{{URL}}"
 							],
@@ -106,7 +134,7 @@
 								"api",
 								"v1",
 								"bootcamps",
-								"1"
+								"5f373403d669f01040c87b91"
 							]
 						},
 						"description": "Delete bootcamp from database"
