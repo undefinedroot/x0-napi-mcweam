@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 // const logger = require('./middleware/logger');
 const morgan = require('morgan');
 const colors = require('colors');
+const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 
 // Load env vars
@@ -23,13 +24,15 @@ app.use(express.json());
 
 // Dev logging middleware, only use it on development mode
 if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
+  app.use(morgan('dev')); /* enable logging of operation messages */
 }
 
 app.disable('x-powered-by');
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
+
+app.use(errorHandler); /* should be defined after the routes, middleware to handle errors */
 
 const PORT = process.env.PORT || 5000; /* access with help of dotenv */
 

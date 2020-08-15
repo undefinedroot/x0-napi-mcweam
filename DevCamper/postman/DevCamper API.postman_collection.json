@@ -98,7 +98,7 @@
 							"raw": "{\r\n    \"housing\": false,\r\n    \"careers\": [\"Web Development\",\"UI/UX\"]\r\n}"
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/5f373020d3b55d1780108b8f",
+							"raw": "{{URL}}/api/v1/bootcamps/5f3768b7c9179f0d64d058c1",
 							"host": [
 								"{{URL}}"
 							],
@@ -106,7 +106,7 @@
 								"api",
 								"v1",
 								"bootcamps",
-								"5f373020d3b55d1780108b8f"
+								"5f3768b7c9179f0d64d058c1"
 							]
 						},
 						"description": "Update single bootcamp in database"
@@ -126,7 +126,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/5f373403d669f01040c87b91",
+							"raw": "{{URL}}/api/v1/bootcamps/5f3768b7c9179f0d64d058c2",
 							"host": [
 								"{{URL}}"
 							],
@@ -134,7 +134,7 @@
 								"api",
 								"v1",
 								"bootcamps",
-								"5f373403d669f01040c87b91"
+								"5f3768b7c9179f0d64d058c2"
 							]
 						},
 						"description": "Delete bootcamp from database"
