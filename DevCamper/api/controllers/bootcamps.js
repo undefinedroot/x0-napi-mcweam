@@ -11,11 +11,42 @@ const Bootcamp = require('../models/Bootcamp');
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
   let query;
 
-  let queryStr = JSON.stringify(req.query); /* make the query as a string so that we can manipulate it */
-  /* retrieve all operators via regular expression, and then append '$' prefix to use advanced filtering */
+  // copy req.query
+  const reqQuery = { ...req.query };
+
+  // fields to exclude on filtering (these are the keywords that should not appear as value of fields in a query)
+  const removeFields = ['select', 'sort'];
+
+  // loop  over removeFields and delete them from reqQuery
+  removeFields.forEach(param => delete reqQuery[param]);
+
+  // create query string
+  let queryStr = JSON.stringify(reqQuery); /* make the query as a string so that we can manipulate it */
+
+  // retrieve all operators via regular expression, and then append '$' prefix to use advanced filtering
   queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
 
-  const bootcamps = await Bootcamp.find(JSON.parse(queryStr));
+  // find resource
+  query = Bootcamp.find(JSON.parse(queryStr));
+
+  // select fields, so that we only want to retrieve specific fields
+  if (req.query.select) {
+    // make value of query from 'select' property into space separated string for mongodb
+    const fields = req.query.select.split(',').join(' ');
+    query = query.select(fields); /* this function is from mongoose */
+  }
+
+  // sort
+  if (req.query.sort) {
+    const sortBy = req.query.sort.split(',').join(' ');
+    query = query.sort(sortBy); /* this function is from mongoose */
+  } else { /* default by date */
+    query = query.sort('-createdAt');
+  }
+
+  // execute query
+  const bootcamps = await query;
+
   res.status(200).json({ success: true, count: bootcamps.length, data: bootcamps });
 });
 //#region
