@@ -1,5 +1,6 @@
 const ErrorResponse = require('../utils/errorResponse'); /* custom class to modify passed error object */
 const asyncHandler = require('../middleware/async');
+const geocoder = require('../utils/geocoder');
 const Bootcamp = require('../models/Bootcamp');
 
 // NOTE: always specify the Content-Type on the header at postman if you need to pass a JSON object (use the presets)
@@ -11,6 +12,7 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
   const bootcamps = await Bootcamp.find();
   res.status(200).json({ success: true, count: bootcamps.length, data: bootcamps });
 });
+//#region
 /* old code:
   exports.getBootcamps = async (req, res, next) => {
     try {
@@ -21,6 +23,7 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
     }
   }
 */
+//#endregion
 
 // @desc      Create new bootcamp
 // @route     POST /api/v1/bootcamps
@@ -61,4 +64,39 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404));
   }
   res.status(200).json({ success: true, data: {} });
+});
+
+// @desc      Get bootcamps within a radius
+// @route     GET /api/v1/bootcamps/radius/:zipcode/:distance
+// @access    Private
+exports.getBootcampsInRadius = asyncHandler(async (req, res, next) => {
+  const { zipcode, distance } = req.params;
+
+  // Get lag/lng from geocoder
+  const loc = await geocoder.geocode(zipcode);
+  const lat = loc[0].latitude;
+  const lng = loc[0].longitude;
+
+  // Calc radius using radians
+  // Divide dist by radius of Earth
+  // Earth Radius = 3,963 mi / 6,378 km
+
+  const radius = distance / 6378;
+
+  /* https://docs.mongodb.com/manual/reference/operator/query/centerSphere/ */
+  /* using mongodb query operator '$*' */
+  const bootcamps = await Bootcamp.find({
+    location: {
+      $geoWithin: {
+        $centerSphere: [[lng, lat], radius]
+      }
+    }
+  });
+
+  res.status(200).json({
+    success: true,
+    count: bootcamps.length,
+    data: bootcamps
+  });
+
 });

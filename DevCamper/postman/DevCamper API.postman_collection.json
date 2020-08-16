@@ -140,6 +140,29 @@
 						"description": "Delete bootcamp from database"
 					},
 					"response": []
+				},
+				{
+					"name": "Get Bootcamps By Distance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/bootcamps/radius/02118/40",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"radius",
+								"02118",
+								"40"
+							]
+						},
+						"description": "Get bootcamps within a radius of a specific zipcode."
+					},
+					"response": []
 				}
 			],
 			"description": "Bootcamps CRUD functionality",
