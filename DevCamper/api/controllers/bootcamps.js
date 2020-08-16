@@ -9,7 +9,13 @@ const Bootcamp = require('../models/Bootcamp');
 // @route     GET /api/v1/bootcamps
 // @access    Public
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
-  const bootcamps = await Bootcamp.find();
+  let query;
+
+  let queryStr = JSON.stringify(req.query); /* make the query as a string so that we can manipulate it */
+  /* retrieve all operators via regular expression, and then append '$' prefix to use advanced filtering */
+  queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+
+  const bootcamps = await Bootcamp.find(JSON.parse(queryStr));
   res.status(200).json({ success: true, count: bootcamps.length, data: bootcamps });
 });
 //#region
