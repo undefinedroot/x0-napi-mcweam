@@ -98,7 +98,7 @@
 							"raw": "{\r\n    \"housing\": false,\r\n    \"careers\": [\"Web Development\",\"UI/UX\"]\r\n}"
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/5f3768b7c9179f0d64d058c1",
+							"raw": "{{URL}}/api/v1/bootcamps/5d725a1b7b292f5f8ceff788",
 							"host": [
 								"{{URL}}"
 							],
@@ -106,7 +106,7 @@
 								"api",
 								"v1",
 								"bootcamps",
-								"5f3768b7c9179f0d64d058c1"
+								"5d725a1b7b292f5f8ceff788"
 							]
 						},
 						"description": "Update single bootcamp in database"
@@ -161,6 +161,45 @@
 							]
 						},
 						"description": "Get bootcamps within a radius of a specific zipcode."
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Photo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Q/Downloads/plash-speed-5.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/bootcamps/5d725a1b7b292f5f8ceff788/photo",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"5d725a1b7b292f5f8ceff788",
+								"photo"
+							]
+						},
+						"description": "Route to upload a bootcamp photo"
 					},
 					"response": []
 				}

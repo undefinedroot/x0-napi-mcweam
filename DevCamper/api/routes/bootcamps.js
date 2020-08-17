@@ -6,9 +6,13 @@ const
     getBootcamp,
     updateBootcamp,
     deleteBootcamp,
-    getBootcampsInRadius
+    getBootcampsInRadius,
+    bootcampPhotoUpload
   } = require('../controllers/bootcamps'),
-  courseRouter = require('./courses'); /* Include other resource routers */
+  courseRouter = require('./courses'), /* Include other resource routers */
+  advancedResults = require('../middleware/advancedResults'),
+  Bootcamp = require('../models/Bootcamp');
+
 
 const router = express.Router();
 
@@ -16,20 +20,20 @@ const router = express.Router();
    so example, we use /api/v1/bootcamps/:bootcampId/courses
    it will be sent to; /api/v1/courses
 */
-router
-  .use('/:bootcampId/courses', courseRouter);
+router.use('/:bootcampId/courses', courseRouter);
 
-router
-  .route('/radius/:zipcode/:distance')
+router.route('/radius/:zipcode/:distance')
   .get(getBootcampsInRadius);
 
-router
-  .route('/')
-  .get(getBootcamps)
+router.route('/:id/photo')
+  .put(bootcampPhotoUpload);
+
+router.route('/')
+  /* using middleware for this method, passing the 'model' and 'virtual property name' */
+  .get(advancedResults(Bootcamp, 'courses_virtual'), getBootcamps)
   .post(createBootcamp);
 
-router
-  .route('/:id')
+router.route('/:id')
   .get(getBootcamp)
   .put(updateBootcamp)
   .delete(deleteBootcamp);

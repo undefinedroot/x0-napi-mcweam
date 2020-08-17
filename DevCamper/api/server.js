@@ -1,10 +1,12 @@
 const
+  path = require('path'),
   express = require('express'),
   dotenv = require('dotenv'),
   morgan = require('morgan'),
   colors = require('colors'),
   errorHandler = require('./middleware/error'),
-  connectDB = require('./config/db');
+  connectDB = require('./config/db'),
+  fileupload = require('express-fileupload');
 // const logger = require('./middleware/logger');
 
 // Load env vars, important: load this before any connection or importing of routes
@@ -28,6 +30,12 @@ if (process.env.NODE_ENV === 'development') {
 
 // Body parser, so that we can retrieve the posted JSON data from the body property of the request object
 app.use(express.json());
+
+// implement uploading of files
+app.use(fileupload());
+
+// set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.disable('x-powered-by');
 
