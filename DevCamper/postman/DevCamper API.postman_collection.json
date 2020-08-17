@@ -167,6 +167,55 @@
 			],
 			"description": "Bootcamps CRUD functionality",
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Courses",
+			"item": [
+				{
+					"name": "Get All Courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/courses",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"courses"
+							]
+						},
+						"description": "Get all courses in database"
+					},
+					"response": []
+				}
+			],
+			"description": "Create, read, update and delete courses",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1f7e4671-753c-43fd-998d-d0035bd5606f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5dae8ea8-4e22-42ce-ae42-83530e9bd97e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}

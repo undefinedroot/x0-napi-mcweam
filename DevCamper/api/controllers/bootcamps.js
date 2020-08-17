@@ -1,7 +1,8 @@
-const ErrorResponse = require('../utils/errorResponse'); /* custom class to modify passed error object */
-const asyncHandler = require('../middleware/async');
-const geocoder = require('../utils/geocoder');
-const Bootcamp = require('../models/Bootcamp');
+const
+  ErrorResponse = require('../utils/errorResponse'), /* custom class to modify passed error object */
+  asyncHandler = require('../middleware/async'),
+  geocoder = require('../utils/geocoder'),
+  Bootcamp = require('../models/Bootcamp');
 
 // NOTE: always specify the Content-Type on the header at postman if you need to pass a JSON object (use the presets)
 

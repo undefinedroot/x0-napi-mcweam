@@ -1,10 +1,11 @@
-const express = require('express');
-const dotenv = require('dotenv');
+const
+  express = require('express'),
+  dotenv = require('dotenv'),
+  morgan = require('morgan'),
+  colors = require('colors'),
+  errorHandler = require('./middleware/error'),
+  connectDB = require('./config/db');
 // const logger = require('./middleware/logger');
-const morgan = require('morgan');
-const colors = require('colors');
-const errorHandler = require('./middleware/error');
-const connectDB = require('./config/db');
 
 // Load env vars, important: load this before any connection or importing of routes
 dotenv.config({ path: './config/config.env' });
@@ -12,7 +13,9 @@ dotenv.config({ path: './config/config.env' });
 // Connect to database
 connectDB();
 
-const bootcamps = require('./routes/bootcamps'); /* route files */
+const
+  bootcamps = require('./routes/bootcamps'), /* route files */
+  courses = require('./routes/courses');
 
 const app = express();
 
@@ -30,6 +33,7 @@ app.disable('x-powered-by');
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
+app.use('/api/v1/courses', courses);
 
 app.use(errorHandler); /* should be defined after the routes, middleware to handle errors */
 
