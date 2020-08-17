@@ -190,6 +190,28 @@
 						"description": "Get all courses in database"
 					},
 					"response": []
+				},
+				{
+					"name": "Get Courses For Bootcamp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/bootcamps/5d713995b721c3bb38c1f5d0/courses",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"5d713995b721c3bb38c1f5d0",
+								"courses"
+							]
+						},
+						"description": "Get the specific courses for a bootcamp"
+					},
+					"response": []
 				}
 			],
 			"description": "Create, read, update and delete courses",

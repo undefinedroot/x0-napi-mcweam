@@ -32,7 +32,7 @@ const CourseSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  bootcamp: { /* create relationship to other collection */
+  bootcamp: { /* create relationship to bootcamp collection named 'bootcamp' via the id */
     type: mongoose.Schema.ObjectId,
     ref: 'Bootcamp', /* reference bootcamp model */
     required: true
