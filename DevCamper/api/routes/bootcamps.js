@@ -11,8 +11,10 @@ const
   } = require('../controllers/bootcamps'),
   courseRouter = require('./courses'), /* Include other resource routers */
   advancedResults = require('../middleware/advancedResults'),
-  Bootcamp = require('../models/Bootcamp');
-
+  Bootcamp = require('../models/Bootcamp'),
+  {
+    protectRoute
+  } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -26,16 +28,16 @@ router.route('/radius/:zipcode/:distance')
   .get(getBootcampsInRadius);
 
 router.route('/:id/photo')
-  .put(bootcampPhotoUpload);
+  .put(protectRoute, bootcampPhotoUpload);
 
 router.route('/')
   /* using middleware for this method, passing the 'model' and 'virtual property name' */
   .get(advancedResults(Bootcamp, 'courses_virtual'), getBootcamps)
-  .post(createBootcamp);
+  .post(protectRoute, createBootcamp);
 
 router.route('/:id')
   .get(getBootcamp)
-  .put(updateBootcamp)
-  .delete(deleteBootcamp);
+  .put(protectRoute, updateBootcamp)
+  .delete(protectRoute, deleteBootcamp);
 
 module.exports = router;

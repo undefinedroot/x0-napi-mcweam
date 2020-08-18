@@ -1,10 +1,13 @@
 const
   express = require('express'),
-  { register } = require('../controllers/auth');
+  { register, login, getMe } = require('../controllers/auth'),
+  { protectRoute } = require('../middleware/auth');
 
 const router = express.Router();
 
-router.route('/register')
-  .post(register);
+router
+  .post('/register', register)
+  .post('/login', login)
+  .get('/me', protectRoute, getMe); /* so that req.user will have value */
 
 module.exports = router;

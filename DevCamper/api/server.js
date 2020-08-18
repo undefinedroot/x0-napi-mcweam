@@ -6,7 +6,8 @@ const
   colors = require('colors'),
   errorHandler = require('./middleware/error'),
   connectDB = require('./config/db'),
-  fileupload = require('express-fileupload');
+  fileupload = require('express-fileupload'),
+  cookieParser = require('cookie-parser');
 // const logger = require('./middleware/logger');
 
 // Load env vars, important: load this before any connection or importing of routes
@@ -37,6 +38,9 @@ app.use(fileupload());
 
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+// cookie parser
+app.use(cookieParser());
 
 app.disable('x-powered-by');
 
