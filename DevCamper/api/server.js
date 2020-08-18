@@ -17,7 +17,8 @@ connectDB();
 
 const
   bootcamps = require('./routes/bootcamps'), /* route files */
-  courses = require('./routes/courses');
+  courses = require('./routes/courses'),
+  auth = require('./routes/auth');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.disable('x-powered-by');
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
 app.use('/api/v1/courses', courses);
+app.use('/api/v1/auth', auth);
 
 app.use(errorHandler); /* should be defined after the routes, middleware to handle errors */
 
