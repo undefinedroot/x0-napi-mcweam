@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ed8abddf-e1ed-45d3-8f36-faa2132e7f4c",
+		"_postman_id": "3f321c08-2653-432f-afda-36c05cd83d55",
 		"name": "DevCamper API",
 		"description": "Backend API for the DevCamper application to manage bootcamps, courses, reviews, users and authentication",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -51,7 +51,7 @@
 					"response": []
 				},
 				{
-					"name": "Create New Bootcamp",
+					"name": "Create Bootcamp",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -156,7 +156,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/5f3768b7c9179f0d64d058c2",
+							"raw": "{{URL}}/api/v1/bootcamps/5d725a1b7b292f5f8ceff788",
 							"host": [
 								"{{URL}}"
 							],
@@ -164,7 +164,7 @@
 								"api",
 								"v1",
 								"bootcamps",
-								"5f3768b7c9179f0d64d058c2"
+								"5d725a1b7b292f5f8ceff788"
 							]
 						},
 						"description": "Delete bootcamp from database"
@@ -314,7 +314,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Bootcamp Course",
+					"name": "Create Course",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -439,7 +439,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "1f7e4671-753c-43fd-998d-d0035bd5606f",
+						"id": "405a008a-4014-424f-b7b7-aaedca573e81",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -449,7 +449,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5dae8ea8-4e22-42ce-ae42-83530e9bd97e",
+						"id": "918c8b11-e39e-493d-9ce2-e46a03c077a9",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -468,7 +468,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "9a620b6d-94f5-4a76-9cc9-a7aa57563dbe",
+								"id": "1e0b7b6d-a4aa-42c5-b5e0-def645ad13be",
 								"exec": [
 									"pm.environment.set(\"TOKEN\", pm.response.json().token);"
 								],
@@ -517,7 +517,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "cdd0a771-543d-4540-9a37-4657a75a2ce9",
+								"id": "8acbdd1a-943f-4f0c-856a-2f3ab38c07f1",
 								"exec": [
 									"pm.environment.set(\"TOKEN\", pm.response.json().token);"
 								],
