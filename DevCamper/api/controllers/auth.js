@@ -69,6 +69,10 @@ const sendTokenResponse = (user, statusCode, res) => {
 // @route     POST /api/v1/auth/me
 // @access    Private
 exports.getMe = asyncHandler(async (req, res, next) => {
+  if (!req.user) {
+    return next(new ErrorResponse('Please login', 403));
+  }
+
   const user = await User.findById(req.user.id); /* user exists on req if we access it via login or register */
 
   if (user) {

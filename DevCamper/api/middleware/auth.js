@@ -37,6 +37,9 @@ exports.protectRoute = asyncHandler(async (req, res, next) => {
 // Grant access to specific roles, does the logged-in user have the necessary role to use the route?
 exports.authorizeRoute = (...roles) => {
   return (req, res, next) => {
+    if (!req.user) {
+      return next(new ErrorResponse('Please login', 403));
+    }
     if (!roles.includes(req.user.role)) {
       return next(new ErrorResponse(`User role '${req.user.role}' is not authorized to access this route`, 403));
     }

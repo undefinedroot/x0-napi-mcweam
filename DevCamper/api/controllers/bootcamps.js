@@ -140,6 +140,7 @@ exports.getBootcampsInRadius = asyncHandler(async (req, res, next) => {
 // @desc      Upload photo for bootcamp
 // @route     PUT /api/v1/bootcamps/:id/photo
 // @access    Private
+// @todo      store photo on mongodb as blob
 exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
   const bootcamp = await Bootcamp.findById(req.params.id);
 
