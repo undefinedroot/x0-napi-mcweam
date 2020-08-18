@@ -488,7 +488,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"test 1\",\r\n    \"email\": \"e1@email.com\",\r\n    \"password\": \"qqqqqq\"\r\n}",
+							"raw": "{\r\n    \"name\": \"test 1\",\r\n    \"email\": \"e1@email.com\",\r\n    \"password\": \"qqqqqq\",\r\n    \"role\": \"publisher\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
