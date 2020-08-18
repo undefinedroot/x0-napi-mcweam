@@ -9,9 +9,7 @@ const
 exports.register = asyncHandler(async (req, res, next) => {
   const { name, email, password, role } = req.body;
   // Create user
-  const user = await User.create({
-    name, email, password, role
-  });
+  const user = await User.create({ name, email, password, role });
 
   sendTokenResponse(user, 200, res);
 });
@@ -22,7 +20,7 @@ exports.register = asyncHandler(async (req, res, next) => {
 exports.login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
-  // Validate email and password
+  // Check if both 'email' and 'password' fields exist on request
   if (!email || !password) {
     return next(new ErrorResponse('Please provide an email and password', 400));
   }
@@ -34,7 +32,7 @@ exports.login = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('Invalid Credentials', 401));
   }
 
-  // Check if password matches
+  // Check if password matches using the matchPassword() method from the model
   const isMatch = await user.matchPassword(password);
 
   if (!isMatch) {
@@ -55,7 +53,7 @@ const sendTokenResponse = (user, statusCode, res) => {
   };
 
   if (process.env.NODE_ENV === 'production') {
-    options.secure = true;
+    options.secure = true; /* send in https */
   }
 
   res

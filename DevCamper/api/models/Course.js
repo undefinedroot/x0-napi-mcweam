@@ -37,7 +37,7 @@ const CourseSchema = new mongoose.Schema({
     ref: 'Bootcamp', /* reference bootcamp model */
     required: true
   },
-  user: {
+  user: { /* create relationship to user collection named 'User' via the id */
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: true
@@ -77,12 +77,12 @@ CourseSchema.statics.getAverageCost = async function (bootcampId) {
   }
 };
 
-// Call getAverageCost after save
+// Call getAverageCost after save operation of Course
 CourseSchema.post('save', function () {
   this.constructor.getAverageCost(this.bootcamp);
 });
 
-// Call getAverageCost before remove
+// Call getAverageCost before remove operation of Course
 CourseSchema.pre('remove', function () {
   this.constructor.getAverageCost(this.bootcamp);
 });

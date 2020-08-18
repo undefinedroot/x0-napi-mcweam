@@ -18,6 +18,7 @@ exports.getCourses = asyncHandler(async (req, res, next) => {
       data: courses
     })
   } else {
+    // this property exists because we passed the middleware on the route
     res.status(200).json(res.ar_prop);
   }
 

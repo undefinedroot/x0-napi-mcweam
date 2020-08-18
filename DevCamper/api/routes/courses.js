@@ -14,10 +14,11 @@ const
     authorizeRoute
   } = require('../middleware/auth');
 
-const router = express.Router({ mergeParams: true }); /* required parameter */
+// when we re-route from bootcamp to here, this option is required to make it work
+const router = express.Router({ mergeParams: true });
 
 router.route('/')
-  /* using middleware for this method, passing the 'model' and 'object relationship' */
+  /* using middleware for this method, passing the 'Course model' and 'object relationship' */
   .get(advancedResults(Course, { path: 'bootcamp', select: 'name description' }), getCourses)
   .post(protectRoute, authorizeRoute('publisher', 'admin'), addCourse);
 

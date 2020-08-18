@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken'),
   ErrorResponse = require('../utils/errorResponse'),
   User = require('../models/User');
 
-// Protect routes
+// Protect routes, check if user is logged-in with a valid jsonwebtoken on the request header
 exports.protectRoute = asyncHandler(async (req, res, next) => {
   let token;
 
@@ -25,6 +25,7 @@ exports.protectRoute = asyncHandler(async (req, res, next) => {
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
+    // provide values for req.user
     req.user = await User.findById(decoded.id);
 
     next();
@@ -33,7 +34,7 @@ exports.protectRoute = asyncHandler(async (req, res, next) => {
   }
 });
 
-// Grant access to specific roles
+// Grant access to specific roles, does the logged-in user have the necessary role to use the route?
 exports.authorizeRoute = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {

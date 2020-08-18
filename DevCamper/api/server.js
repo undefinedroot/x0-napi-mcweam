@@ -4,26 +4,22 @@ const
   dotenv = require('dotenv'),
   morgan = require('morgan'),
   colors = require('colors'),
-  errorHandler = require('./middleware/error'),
+  errorHandler = require('./middleware/errorHandler'),
   connectDB = require('./config/db'),
   fileupload = require('express-fileupload'),
   cookieParser = require('cookie-parser');
-// const logger = require('./middleware/logger');
 
 // Load env vars, important: load this before any connection or importing of routes
 dotenv.config({ path: './config/config.env' });
 
-// Connect to database
-connectDB();
+connectDB(); // connect to database
 
-const
-  bootcamps = require('./routes/bootcamps'), /* route files */
+const /* route files */
+  bootcamps = require('./routes/bootcamps'),
   courses = require('./routes/courses'),
   auth = require('./routes/auth');
 
 const app = express();
-
-//app.use(logger); /* use custom middleware */
 
 // Dev logging middleware, only use it on development mode
 if (process.env.NODE_ENV === 'development') {
@@ -42,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // cookie parser
 app.use(cookieParser());
 
+// remove x-powered-by on response headers so that info about this running Express is not shown
 app.disable('x-powered-by');
 
 // Mount routers
@@ -49,9 +46,11 @@ app.use('/api/v1/bootcamps', bootcamps);
 app.use('/api/v1/courses', courses);
 app.use('/api/v1/auth', auth);
 
-app.use(errorHandler); /* should be defined after the routes, middleware to handle errors */
+// should be defined after the routes, middleware to handle errors
+app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000; /* access with help of dotenv */
+// access with help of dotenv
+const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, console.log(`Server running in '${process.env.NODE_ENV}' mode on port: ${PORT}`.yellow.bold));
 

@@ -38,22 +38,24 @@ const UserSchema = new mongoose.Schema({
 
 // Encrypt password using bcrypt
 // https://github.com/dcodeIO/bcrypt.js
+// before we save the document, we hash the password first
 UserSchema.pre('save', async function (next) {
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
-// Sign JWT and return
+// Sign JWT (jsonwebtoken) and return
 // can check https://jwt.io/
 // https://github.com/auth0/node-jsonwebtoken
 // by default algorithm is HS256
 UserSchema.methods.getSignedJwtToken = function () {
-  return jwt.sign(
-    { id: this._id },
-    process.env.JWT_SECRET,
-    { expiresIn: process.env.JWT_EXPIRE }
-  );
+  return jwt
+    .sign(
+      { id: this._id },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRE }
+    );
 };
 
 // Match user entered password to hased password in database

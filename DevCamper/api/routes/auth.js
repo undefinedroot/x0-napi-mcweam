@@ -8,6 +8,6 @@ const router = express.Router();
 router
   .post('/register', register)
   .post('/login', login)
-  .get('/me', protectRoute, getMe); /* so that req.user will have value */
+  .get('/me', protectRoute, getMe); /* we use 'protectRoute' middleware so that req.user will have value */
 
 module.exports = router;

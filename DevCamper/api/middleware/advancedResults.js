@@ -10,7 +10,7 @@ const advancedResults =
       const removeFields = ['select', 'sort', 'page', 'limit'];
 
       // loop  over removeFields and delete them from reqQuery
-      removeFields.forEach(param => delete reqQuery[param]);
+      removeFields.forEach(removeField => delete reqQuery[removeField]);
 
       // create query string
       let queryStr = JSON.stringify(reqQuery); /* make the query as a string so that we can manipulate it */

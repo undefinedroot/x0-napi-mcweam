@@ -1,6 +1,6 @@
 const ErrorResponse = require("../utils/errorResponse");
 
-// middleware that serves as a catch-all
+// this is only used on server.js as middleware, serves as a catch-all
 const errorHandler = (err, req, res, next) => {
   let error = { ...err };
 
@@ -21,12 +21,18 @@ const errorHandler = (err, req, res, next) => {
 
   // Mongoose validation error
   if (err.name === 'ValidationError') {
-    const message = Object.values(err.errors).map(val => val.message); /* extract error message from mongoose schema */
-    error = new ErrorResponse(message, 400);
+    // extract error message from mongoose schema
+    const messages = Object.values(err.errors).map(error => error.message);
+
+    error = new ErrorResponse(messages, 400);
   }
 
-  // does 'err' object contain a 'statusCode' property?
-  res.status(error.statusCode || 500).json({ success: false, error: error.message || 'Server Error' });
+  res
+    .status(error.statusCode || 500)
+    .json({
+      success: false,
+      error: error.message || 'Server Error'
+    });
 }
 
 module.exports = errorHandler;

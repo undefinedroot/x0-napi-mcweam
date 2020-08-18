@@ -12,6 +12,7 @@ const
 // @access    Public
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
   // let us use the property that the middleware 'advancedResults' provides
+  // this property exists because we passed the middleware on the route
   res.status(200).json(res.ar_prop);
 });
 //#region
@@ -32,7 +33,7 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
 // @access    Private
 exports.createBootcamp = asyncHandler(async (req, res, next) => {
   // Add user to req.body
-  req.body.user = req.user.id; /* the logged in user id will be used */
+  req.body.user = req.user.id; /* the logged-in user id will be used */
 
   // checked for published bootcamps
   const publishedBootcamp = await Bootcamp.findOne({ user: req.user.id }); /* find all bootcamps by this user */
@@ -82,7 +83,7 @@ exports.updateBootcamp = asyncHandler(async (req, res, next) => {
 // @route     DELETE /api/v1/bootcamps/:id
 // @access    Private
 exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
-  // cascading delete will not work with this
+  // cascading delete will not work with this;
   //const bootcamp = await Bootcamp.findByIdAndDelete(req.params.id);
 
   const bootcamp = await Bootcamp.findById(req.params.id);

@@ -104,7 +104,7 @@ const BootcampSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  user: {
+  user: {  /* create relationship to user collection named 'User' via the id */
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: true
@@ -140,10 +140,9 @@ BootcampSchema.pre('save', async function (next) {
   next();
 });
 
-// Cascade delete courses when a bootcamp is deleted
+// Cascade delete courses, so before a bootcamp is deleted it will first delete related courses
 BootcampSchema.pre('remove', async function (next) {
   console.log(`Courses being removed from bootcamp ${this._id}`);
-
   await this.model('Course').deleteMany({ bootcamp: this._id }); /* delete only related course */
   next();
 });
@@ -154,7 +153,7 @@ BootcampSchema.pre('remove', async function (next) {
 BootcampSchema.virtual('courses_virtual', {
   ref: 'Course', /* name of the collection to link to */
   localField: '_id', /* the id of this document on this record */
-  foreignField: 'bootcamp', /* field in the course model, where we link the localField */
+  foreignField: 'bootcamp', /* field in the course model, where we link this document */
   justOne: false
 });
 
