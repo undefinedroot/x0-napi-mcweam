@@ -13,7 +13,8 @@ const
   advancedResults = require('../middleware/advancedResults'),
   Bootcamp = require('../models/Bootcamp'),
   {
-    protectRoute
+    protectRoute,
+    authorizeRoute
   } = require('../middleware/auth');
 
 const router = express.Router();
@@ -27,17 +28,17 @@ router.use('/:bootcampId/courses', courseRouter);
 router.route('/radius/:zipcode/:distance')
   .get(getBootcampsInRadius);
 
-router.route('/:id/photo')
-  .put(protectRoute, bootcampPhotoUpload);
+router.route('/:id/photo') /* note: the protect and authorize should be in order */
+  .put(protectRoute, authorizeRoute('publisher', 'admin'), bootcampPhotoUpload);
 
 router.route('/')
   /* using middleware for this method, passing the 'model' and 'virtual property name' */
   .get(advancedResults(Bootcamp, 'courses_virtual'), getBootcamps)
-  .post(protectRoute, createBootcamp);
+  .post(protectRoute, authorizeRoute('publisher', 'admin'), createBootcamp);
 
 router.route('/:id')
   .get(getBootcamp)
-  .put(protectRoute, updateBootcamp)
-  .delete(protectRoute, deleteBootcamp);
+  .put(protectRoute, authorizeRoute('publisher', 'admin'), updateBootcamp)
+  .delete(protectRoute, authorizeRoute('publisher', 'admin'), deleteBootcamp);
 
 module.exports = router;

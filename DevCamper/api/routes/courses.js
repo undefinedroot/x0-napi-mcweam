@@ -10,7 +10,8 @@ const
   Course = require('../models/Course'),
   advancedResults = require('../middleware/advancedResults'),
   {
-    protectRoute
+    protectRoute,
+    authorizeRoute
   } = require('../middleware/auth');
 
 const router = express.Router({ mergeParams: true }); /* required parameter */
@@ -18,11 +19,11 @@ const router = express.Router({ mergeParams: true }); /* required parameter */
 router.route('/')
   /* using middleware for this method, passing the 'model' and 'object relationship' */
   .get(advancedResults(Course, { path: 'bootcamp', select: 'name description' }), getCourses)
-  .post(protectRoute, addCourse);
+  .post(protectRoute, authorizeRoute('publisher', 'admin'), addCourse);
 
 router.route('/:id')
   .get(getCourse)
-  .put(protectRoute, updateCourse)
-  .delete(protectRoute, deleteCourse);
+  .put(protectRoute, authorizeRoute('publisher', 'admin'), updateCourse)
+  .delete(protectRoute, authorizeRoute('publisher', 'admin'), deleteCourse);
 
 module.exports = router;
