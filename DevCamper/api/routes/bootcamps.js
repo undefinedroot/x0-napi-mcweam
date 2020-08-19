@@ -10,6 +10,7 @@ const
     bootcampPhotoUpload
   } = require('../controllers/bootcamps'),
   courseRouter = require('./courses'),
+  reviewRouter = require('./reviews'),
   advancedResults = require('../middleware/advancedResults'),
   Bootcamp = require('../models/Bootcamp'),
   {
@@ -25,6 +26,7 @@ const router = express.Router();
    it will be sent to; /api/v1/courses
 */
 router.use('/:bootcampId/courses', courseRouter);
+router.use('/:bootcampId/reviews', reviewRouter);
 
 router.route('/radius/:zipcode/:distance')
   .get(getBootcampsInRadius);

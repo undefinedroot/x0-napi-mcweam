@@ -30,12 +30,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5f373020d3b55d1780108b8f",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5d725a1b7b292f5f8ceff788",
 							"host": [
 								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
 							"path": [
-								"5f373020d3b55d1780108b8f"
+								"5d725a1b7b292f5f8ceff788"
 							]
 						},
 						"description": "Get single bootcamp by ID"
@@ -875,6 +875,47 @@
 				}
 			],
 			"description": "CRUD functionality for users only available to admins",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Get All Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{REVIEWS_API_PATH}}",
+							"host": [
+								"{{URL}}{{REVIEWS_API_PATH}}"
+							]
+						},
+						"description": "Get all reviews from database and populate with bootcamp name and description"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reviews For Bootcamp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5d725a1b7b292f5f8ceff788/reviews",
+							"host": [
+								"{{URL}}{{BOOTCAMP_API_PATH}}"
+							],
+							"path": [
+								"5d725a1b7b292f5f8ceff788",
+								"reviews"
+							]
+						},
+						"description": "Fetch the reviews for a specific bootcamp"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage course reviews",
 			"protocolProfileBehavior": {}
 		}
 	],

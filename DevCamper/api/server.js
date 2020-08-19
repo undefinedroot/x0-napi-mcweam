@@ -18,7 +18,8 @@ const /* route files */
   bootcamps = require('./routes/bootcamps'),
   courses = require('./routes/courses'),
   auth = require('./routes/auth'),
-  users = require('./routes/users');
+  users = require('./routes/users'),
+  reviews = require('./routes/reviews');
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.use(`${process.env.BOOTCAMP_API_PATH}`, bootcamps);
 app.use(`${process.env.COURSES_API_PATH}`, courses);
 app.use(`${process.env.AUTH_API_PATH}`, auth);
 app.use(`${process.env.ADMIN_API_PATH}`, users);
+app.use(`${process.env.REVIEWS_API_PATH}`, reviews);
 
 // should be defined after the routes, middleware to handle errors
 app.use(errorHandler);
