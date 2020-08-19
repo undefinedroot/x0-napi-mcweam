@@ -488,7 +488,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"test 1\",\r\n    \"email\": \"e1@email.com\",\r\n    \"password\": \"qqqqqq\",\r\n    \"role\": \"publisher\"\r\n}",
+							"raw": "{\r\n    \"name\": \"test 1\",\r\n    \"email\": \"e1@z.com\",\r\n    \"password\": \"qqqqqq\",\r\n    \"role\": \"publisher\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -537,7 +537,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"e1@email.com\",\r\n    \"password\": \"qqqqqq\"\r\n}",
+							"raw": "{\r\n    \"email\": \"e1@z.com\",\r\n    \"password\": \"qqqqqq\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -607,6 +607,38 @@
 							]
 						},
 						"description": "Get profile of user"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user@z.com\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/auth/forgotpassword",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"forgotpassword"
+							]
+						},
+						"description": "Generate password token and send email"
 					},
 					"response": []
 				}
