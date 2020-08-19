@@ -701,6 +701,181 @@
 			],
 			"description": "Routes for user authentication including register, login, reset password, etc.",
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{ADMIN_API_PATH}}",
+							"host": [
+								"{{URL}}{{ADMIN_API_PATH}}"
+							]
+						},
+						"description": "Get all users (admin)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{ADMIN_API_PATH}}/5f3c90acb4f77108642a7c8c",
+							"host": [
+								"{{URL}}{{ADMIN_API_PATH}}"
+							],
+							"path": [
+								"5f3c90acb4f77108642a7c8c"
+							]
+						},
+						"description": "Get single user by id (admin)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"heh test\",\r\n    \"email\": \"ha@h.com\",\r\n    \"password\": \"qqqqqq\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}{{ADMIN_API_PATH}}",
+							"host": [
+								"{{URL}}{{ADMIN_API_PATH}}"
+							]
+						},
+						"description": "Add user to database (admin)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"heh test changed\",\r\n    \"email\": \"ha@h.com\",\r\n    \"password\": \"qqqqqq\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}{{ADMIN_API_PATH}}/5f3cdf942cf3b80eb0de2a83",
+							"host": [
+								"{{URL}}{{ADMIN_API_PATH}}"
+							],
+							"path": [
+								"5f3cdf942cf3b80eb0de2a83"
+							]
+						},
+						"description": "Update user in database (admin)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}{{ADMIN_API_PATH}}/5f3cdf942cf3b80eb0de2a83",
+							"host": [
+								"{{URL}}{{ADMIN_API_PATH}}"
+							],
+							"path": [
+								"5f3cdf942cf3b80eb0de2a83"
+							]
+						},
+						"description": "Delete user from database (admin)"
+					},
+					"response": []
+				}
+			],
+			"description": "CRUD functionality for users only available to admins",
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}

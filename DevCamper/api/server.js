@@ -9,7 +9,7 @@ const
   fileupload = require('express-fileupload'),
   cookieParser = require('cookie-parser');
 
-// Load env vars, important: load this before any connection or importing of routes
+// Load env vars, IMPORTANT: load this before any connection or importing of routes
 dotenv.config({ path: './config/config.env' });
 
 connectDB(); // connect to database
@@ -17,7 +17,8 @@ connectDB(); // connect to database
 const /* route files */
   bootcamps = require('./routes/bootcamps'),
   courses = require('./routes/courses'),
-  auth = require('./routes/auth');
+  auth = require('./routes/auth'),
+  users = require('./routes/users');
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.disable('x-powered-by');
 app.use(`${process.env.BOOTCAMP_API_PATH}`, bootcamps);
 app.use(`${process.env.COURSES_API_PATH}`, courses);
 app.use(`${process.env.AUTH_API_PATH}`, auth);
+app.use(`${process.env.ADMIN_API_PATH}`, users);
 
 // should be defined after the routes, middleware to handle errors
 app.use(errorHandler);
