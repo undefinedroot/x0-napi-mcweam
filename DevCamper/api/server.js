@@ -42,9 +42,9 @@ app.use(cookieParser());
 app.disable('x-powered-by');
 
 // Mount routers
-app.use(`${process.env.API_PATH}/bootcamps`, bootcamps);
-app.use(`${process.env.API_PATH}/courses`, courses);
-app.use(`${process.env.API_PATH}/auth`, auth);
+app.use(`${process.env.BOOTCAMP_API_PATH}`, bootcamps);
+app.use(`${process.env.COURSES_API_PATH}`, courses);
+app.use(`${process.env.AUTH_API_PATH}`, auth);
 
 // should be defined after the routes, middleware to handle errors
 app.use(errorHandler);

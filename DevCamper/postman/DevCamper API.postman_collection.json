@@ -15,14 +15,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}",
 							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"bootcamps"
+								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							]
 						},
 						"description": "Fetch all bootcamps from database. Includes pagination, filtering, etc."
@@ -35,14 +30,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/5f373020d3b55d1780108b8f",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5f373020d3b55d1780108b8f",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"bootcamps",
 								"5f373020d3b55d1780108b8f"
 							]
 						},
@@ -77,14 +69,9 @@
 							"raw": "{\r\n   \"name\": \"Devcentral Bootcamp B\",\r\n\t\t\"description\": \"Is coding your passion? Codemasters will give you the skills and the tools to become the best developer possible. We specialize in front end and full stack web development\",\r\n\t\t\"website\": \"https://devcentral.com\",\r\n\t\t\"phone\": \"(444) 444-4444\",\r\n\t\t\"email\": \"enroll@devcentral.com\",\r\n\t\t\"address\": \"45 Upper College Rd Kingston RI 02881\",\r\n\t\t\"careers\": [\r\n\t\t\t\"Mobile Development\",\r\n\t\t\t\"Web Development\",\r\n\t\t\t\"Data Science\",\r\n\t\t\t\"Business\"\r\n\t\t],\r\n\t\t\"housing\": false,\r\n\t\t\"jobAssistance\": true,\r\n\t\t\"jobGuarantee\": true,\r\n\t\t\"acceptGi\": true\r\n}"
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}",
 							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"bootcamps"
+								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							]
 						},
 						"description": "Add new bootcamp to database. Must be authenticated and must be publisher or admin"
@@ -118,14 +105,11 @@
 							"raw": "{\r\n    \"housing\": false,\r\n    \"careers\": [\"Web Development\",\"UI/UX\"]\r\n}"
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/5f3c68eea96a2010e06b7489",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5f3c68eea96a2010e06b7489",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"bootcamps",
 								"5f3c68eea96a2010e06b7489"
 							]
 						},
@@ -156,14 +140,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/5d725a1b7b292f5f8ceff788",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5d725a1b7b292f5f8ceff788",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"bootcamps",
 								"5d725a1b7b292f5f8ceff788"
 							]
 						},
@@ -177,14 +158,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/radius/02118/40",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/radius/02118/40",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"bootcamps",
 								"radius",
 								"02118",
 								"40"
@@ -227,14 +205,11 @@
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/5f3c68eea96a2010e06b7489/photo",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5f3c68eea96a2010e06b7489/photo",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"bootcamps",
 								"5f3c68eea96a2010e06b7489",
 								"photo"
 							]
@@ -256,14 +231,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/courses",
+							"raw": "{{URL}}{{COURSES_API_PATH}}",
 							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"courses"
+								"{{URL}}{{COURSES_API_PATH}}"
 							]
 						},
 						"description": "Get all courses in database"
@@ -276,14 +246,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/5d713995b721c3bb38c1f5d0/courses",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5d713995b721c3bb38c1f5d0/courses",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"bootcamps",
 								"5d713995b721c3bb38c1f5d0",
 								"courses"
 							]
@@ -298,14 +265,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/courses/5d725a4a7b292f5f8ceff789",
+							"raw": "{{URL}}{{COURSES_API_PATH}}/5d725a4a7b292f5f8ceff789",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{COURSES_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"courses",
 								"5d725a4a7b292f5f8ceff789"
 							]
 						},
@@ -340,14 +304,11 @@
 							"raw": "{\r\n    \"title\": \"Full Stack Web Development\",\r\n\t\"description\": \"In this course you will learn full stack web development, first learning all about the frontend with HTML/CSS/JS/Vue and then the backend with Node.js/Express/MongoDB\",\r\n    \"weeks\": 12,\r\n\t\"tuition\": 10000,\r\n\t\"minimumSkill\": \"intermediate\",\r\n\t\"scholarhipsAvailable\": true\r\n}"
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/bootcamps/5d725a1b7b292f5f8ceff788/courses",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5d725a1b7b292f5f8ceff788/courses",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"bootcamps",
 								"5d725a1b7b292f5f8ceff788",
 								"courses"
 							]
@@ -383,14 +344,11 @@
 							"raw": "{\r\n    \"tuition\": 13000,\r\n    \"minimumSkill\": \"advanced\"\r\n}"
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/courses/5d725a4a7b292f5f8ceff789",
+							"raw": "{{URL}}{{COURSES_API_PATH}}/5d725a4a7b292f5f8ceff789",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{COURSES_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"courses",
 								"5d725a4a7b292f5f8ceff789"
 							]
 						},
@@ -418,14 +376,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/courses/5d725a4a7b292f5f8ceff789",
+							"raw": "{{URL}}{{COURSES_API_PATH}}/5d725a4a7b292f5f8ceff789",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{COURSES_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"courses",
 								"5d725a4a7b292f5f8ceff789"
 							]
 						},
@@ -496,14 +451,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/auth/register",
+							"raw": "{{URL}}{{AUTH_API_PATH}}/register",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{AUTH_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"auth",
 								"register"
 							]
 						},
@@ -545,14 +497,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/auth/login",
+							"raw": "{{URL}}{{AUTH_API_PATH}}/login",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{AUTH_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"auth",
 								"login"
 							]
 						},
@@ -595,14 +544,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/auth/me",
+							"raw": "{{URL}}{{AUTH_API_PATH}}/me",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{AUTH_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"auth",
 								"me"
 							]
 						},
@@ -624,21 +570,131 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"user@z.com\"\r\n}"
+							"raw": "{\r\n    \"email\": \"e1@z.com\"\r\n}"
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/auth/forgotpassword",
+							"raw": "{{URL}}{{AUTH_API_PATH}}/forgotpassword",
 							"host": [
-								"{{URL}}"
+								"{{URL}}{{AUTH_API_PATH}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"auth",
 								"forgotpassword"
 							]
 						},
 						"description": "Generate password token and send email"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"qqqqqq\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}{{AUTH_API_PATH}}/resetpassword/c54379d2c8a6ba594b0e8bcb382d2f494f36e732",
+							"host": [
+								"{{URL}}{{AUTH_API_PATH}}"
+							],
+							"path": [
+								"resetpassword",
+								"c54379d2c8a6ba594b0e8bcb382d2f494f36e732"
+							]
+						},
+						"description": "Reset user password using token"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"x@x.com\",\r\n    \"name\": \"test new\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}{{AUTH_API_PATH}}/updatedetails",
+							"host": [
+								"{{URL}}{{AUTH_API_PATH}}"
+							],
+							"path": [
+								"updatedetails"
+							]
+						},
+						"description": "Update logged in user name and email"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"currentPassword\": \"yyyyyy\",\r\n    \"newPassword\": \"qqqqqq\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{AUTH_API_PATH}}/updatepassword",
+							"host": [
+								"{{URL}}{{AUTH_API_PATH}}"
+							],
+							"path": [
+								"updatepassword"
+							]
+						},
+						"description": "Update logged in user password, send in the body currentPassword and newPassword"
 					},
 					"response": []
 				}
