@@ -9,4 +9,4 @@
 
 4. go to: https://github.com/thedevsaddam/docgen
 
-5. >> docgen-windows_amd64 build -i "DevCamper API.postman_collection.json" -o index.html
+5. >> docgen-windows_amd64 build -i "DevCamper API (Docs).postman_collection" -o index.html

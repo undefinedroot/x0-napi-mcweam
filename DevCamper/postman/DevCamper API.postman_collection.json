@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3f321c08-2653-432f-afda-36c05cd83d55",
+		"_postman_id": "b66fd35c-db84-46fc-94cf-65381484c615",
 		"name": "DevCamper API",
 		"description": "Backend API for the DevCamper application to manage bootcamps, courses, reviews, users and authentication",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -394,7 +394,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "405a008a-4014-424f-b7b7-aaedca573e81",
+						"id": "6d7a2438-f1be-4af9-a87e-ca24905163e7",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -404,7 +404,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "918c8b11-e39e-493d-9ce2-e46a03c077a9",
+						"id": "d3400f53-f017-4994-8312-349167fe7e07",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -423,7 +423,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1e0b7b6d-a4aa-42c5-b5e0-def645ad13be",
+								"id": "c26149be-770b-4fac-a591-4d7ea3b9fafd",
 								"exec": [
 									"pm.environment.set(\"TOKEN\", pm.response.json().token);"
 								],
@@ -469,7 +469,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8acbdd1a-943f-4f0c-856a-2f3ab38c07f1",
+								"id": "ec4dc9f6-9f8d-4e0b-a4a0-5ade00a7318c",
 								"exec": [
 									"pm.environment.set(\"TOKEN\", pm.response.json().token);"
 								],
@@ -714,7 +714,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "41b44285-f0db-4211-ab66-f86ac402667e",
+								"id": "9d35f6c3-e237-4cf6-8341-23647031073f",
 								"exec": [
 									"pm.environment.set(\"TOKEN\", \"\");"
 								],
@@ -1009,7 +1009,7 @@
 							"raw": "{\r\n    \"title\": \"Nice Bootcamp\",\r\n    \"text\": \"this is a test\",\r\n    \"rating\": 8\r\n}"
 						},
 						"url": {
-							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}\\5f4204671ad3d80facac3f89\\reviews",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5f4204671ad3d80facac3f89/reviews",
 							"host": [
 								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
