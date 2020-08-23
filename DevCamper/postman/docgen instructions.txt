@@ -1,0 +1,12 @@
+1. postman ->
+    duplicate environment,
+    and change the URL variable initial value
+    for the domain you will deploy to
+
+2. postman -> publish docs (must be signed in to postman)
+
+3. postman -> export
+
+4. go to: https://github.com/thedevsaddam/docgen
+
+5. >> docgen-windows_amd64 build -i "DevCamper API.postman_collection.json" -o index.html
