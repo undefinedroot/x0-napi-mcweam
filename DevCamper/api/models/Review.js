@@ -54,8 +54,8 @@ ReviewSchema.statics.getAverageRating = async function (bootcampId) {
   try {
     let avgRating = 0;
 
-    if (obj) { // TODO: how to detect if no more reviews, because it still goes below
-      // Cannot read property 'averageRating' of undefined
+    if (obj.length !== 0) {
+      console.log('assign from array');
       avgRating = obj[0].averageRating;
     }
 
@@ -76,8 +76,6 @@ ReviewSchema.post('save', async function () {
 
 // Call getAverageRating after remove operation of Review
 ReviewSchema.post('remove', async function () {
-  console.log(`removing this review ${this.id}`);
-  console.log(`removing this review with bootcamp of ${this.bootcamp}`);
   await this.constructor.getAverageRating(this.bootcamp);
 });
 

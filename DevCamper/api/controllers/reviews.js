@@ -80,13 +80,16 @@ exports.updateReview = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`Not authorized to update review`, 401));
   }
 
-  review = await Review.findOneAndUpdate({ _id: req.params.id }, req.body, {
-    new: true,
-    runValidators: true
-  }, async function (err, doc, res) {
-    // we can't use any middleware during update, so trigger the recalculation of averageRating here
-    await Review.getAverageRating(doc.bootcamp);
-  });
+  review = await Review.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    {
+      new: true,
+      runValidators: true
+    }, async function (err, doc, res) {
+      // we can't use any middleware during update, so trigger the recalculation of averageRating here
+      await Review.getAverageRating(doc.bootcamp);
+    });
 
   res.status(201).json({
     success: true,

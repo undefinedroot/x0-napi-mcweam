@@ -89,14 +89,19 @@ exports.updateCourse = asyncHandler(async (req, res, next) => {
   }
 
   /* do not forget to set the Content-Type on postman */
-  course =
-    await Course
-      .findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true
-      });
 
-  res.status(200).json({
+  course = await Course.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    {
+      new: true,
+      runValidators: true
+    }, async function (err, doc, res) {
+      // we can't use any middleware during update, so trigger the recalculation of averageRating here
+      await Course.getAverageCost(doc.bootcamp);
+    });
+
+  res.status(201).json({
     success: true,
     data: course
   });
