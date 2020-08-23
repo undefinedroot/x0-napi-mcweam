@@ -2,7 +2,8 @@ const
   express = require('express'),
   {
     getReviews,
-    getReview
+    getReview,
+    addReview
   } = require('../controllers/reviews'),
   Review = require('../models/Review'),
   advancedResults = require('../middleware/advancedResults'),
@@ -15,7 +16,8 @@ const router = express.Router({ mergeParams: true }); // for re-routing
 
 router
   .route('/')
-  .get(advancedResults(Review, { path: 'bootcamp', select: 'name description' }), getReviews);
+  .get(advancedResults(Review, { path: 'bootcamp', select: 'name description' }), getReviews)
+  .post(protectRoute, authorizeRoute('user', 'admin'), addReview);
 
 router
   .route('/:id')

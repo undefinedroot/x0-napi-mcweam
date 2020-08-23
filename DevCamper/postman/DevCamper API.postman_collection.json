@@ -443,7 +443,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"test 1\",\r\n    \"email\": \"e1@z.com\",\r\n    \"password\": \"qqqqqq\",\r\n    \"role\": \"publisher\"\r\n}",
+							"raw": "{\r\n    \"name\": \"p1\",\r\n    \"email\": \"e2@z.com\",\r\n    \"password\": \"qqqqqq\",\r\n    \"role\": \"publisher\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -929,6 +929,46 @@
 							]
 						},
 						"description": "Fetch a review from database by id and populate bootcamp name and description"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Review for Bootcamp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Nice Bootcamp\",\r\n    \"text\": \"this is a test\",\r\n    \"rating\": 1\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}\\5d725a1b7b292f5f8ceff788\\reviews",
+							"host": [
+								"{{URL}}{{BOOTCAMP_API_PATH}}"
+							],
+							"path": [
+								"5d725a1b7b292f5f8ceff788",
+								"reviews"
+							]
+						},
+						"description": "Insert review for a specific bootcamp"
 					},
 					"response": []
 				}
