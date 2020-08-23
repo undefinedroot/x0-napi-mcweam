@@ -1,6 +1,7 @@
 const
   express = require('express'),
-  { register, login, getMe, forgotPassword, resetPassword, updateDetails, updatePassword } = require('../controllers/auth'),
+  { register, login, getMe, forgotPassword, resetPassword, updateDetails, updatePassword, logout }
+    = require('../controllers/auth'),
   { protectRoute } = require('../middleware/auth');
 
 const router = express.Router();
@@ -8,6 +9,7 @@ const router = express.Router();
 router
   .post('/register', register)
   .post('/login', login)
+  .get('/logout', protectRoute, logout)
   .get('/me', protectRoute, getMe) /* we use 'protectRoute' middleware so that req.user will have value */
   .post('/forgotpassword', forgotPassword)
   .put('/resetpassword/:resettoken', resetPassword)

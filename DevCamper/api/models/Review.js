@@ -55,7 +55,6 @@ ReviewSchema.statics.getAverageRating = async function (bootcampId) {
     let avgRating = 0;
 
     if (obj.length !== 0) {
-      console.log('assign from array');
       avgRating = obj[0].averageRating;
     }
 

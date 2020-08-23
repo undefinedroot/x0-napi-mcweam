@@ -8,13 +8,26 @@ exports.protectRoute = asyncHandler(async (req, res, next) => {
   let token;
 
   // let us check the headers
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+  if (req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')) {
+
+    // Set token from Bearer token in header
     const item = req.headers.authorization.split(' ');
     token = item[item.length - 1];
+
+    // } else if (req.cookies.token) {
+
+    /*
+       if you want to use cookies,
+       uncomment this else-if block
+       and remove the "Auth -> Bearer Token"
+       setting from postman scripts
+       and make it "Auth -> No Auth"
+    */
+
+    //   // Set token from cookie
+    //   token = req.cookies.token
   }
-  // else if (req.cookies.token) {
-  //   token = req.cookies.token
-  // }
 
   // Make sure token exists
   if (!token) {

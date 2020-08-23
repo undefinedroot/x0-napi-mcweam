@@ -478,6 +478,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -489,7 +499,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"p1@z.com\",\r\n    \"password\": \"qqqqqq\"\r\n}",
+							"raw": "{\r\n    \"email\": \"admin@z.com\",\r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -695,6 +705,46 @@
 							]
 						},
 						"description": "Update logged in user password, send in the body currentPassword and newPassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "41b44285-f0db-4211-ab66-f86ac402667e",
+								"exec": [
+									"pm.environment.set(\"TOKEN\", \"\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{AUTH_API_PATH}}/logout",
+							"host": [
+								"{{URL}}{{AUTH_API_PATH}}"
+							],
+							"path": [
+								"logout"
+							]
+						},
+						"description": "Clear token cookie"
 					},
 					"response": []
 				}
