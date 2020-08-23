@@ -10,10 +10,9 @@ const ReviewSchema = new mongoose.Schema({
   },
   text: {
     type: String,
-    required: [true, 'Please add some text'],
-    maxlength: 300
+    required: [true, 'Please add some text']
   },
-  tuition: {
+  rating: {
     type: Number,
     min: 1,
     max: 100,

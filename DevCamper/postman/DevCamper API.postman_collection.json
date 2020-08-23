@@ -901,16 +901,34 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5d725a1b7b292f5f8ceff788/reviews",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5d713995b721c3bb38c1f5d0/reviews",
 							"host": [
 								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
 							"path": [
-								"5d725a1b7b292f5f8ceff788",
+								"5d713995b721c3bb38c1f5d0",
 								"reviews"
 							]
 						},
 						"description": "Fetch the reviews for a specific bootcamp"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Review",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{REVIEWS_API_PATH}}/5d7a514b5d2c12c7449be020",
+							"host": [
+								"{{URL}}{{REVIEWS_API_PATH}}"
+							],
+							"path": [
+								"5d7a514b5d2c12c7449be020"
+							]
+						},
+						"description": "Fetch a review from database by id and populate bootcamp name and description"
 					},
 					"response": []
 				}
