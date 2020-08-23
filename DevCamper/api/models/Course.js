@@ -51,32 +51,21 @@ CourseSchema.statics.getAverageCost = async function (bootcampId) {
   // initiate aggregation
   const obj =
     await this.aggregate([
-      {
-        $match: {
-          bootcamp: bootcampId  /* match the id */
-        }
-      },
+      { $match: { bootcamp: bootcampId } }, /* match the id */
       {
         $group: {
           _id: '$bootcamp',
-          averageCost: {
-            $avg: '$tuition'
-          }
+          averageCost: { $avg: '$tuition' }
         }
       }
     ]);
 
   try {
-    let avgCost = 0;
-    if (typeof obj[0].averageCost !== undefined) {
-      avgCost = Math.ceil(obj[0].averageCost / 10) * 10   /* to get a whole number value */
-    }
-
     await this.model('Bootcamp')
       .findByIdAndUpdate(
         bootcampId,
         {
-          averageCost: avgCost
+          averageCost: Math.ceil(obj[0].averageCost / 10) * 10   /* to get a whole number value */
         }
       );
   } catch (err) {
@@ -86,13 +75,11 @@ CourseSchema.statics.getAverageCost = async function (bootcampId) {
 
 // Call getAverageCost after save operation of Course
 CourseSchema.post('save', async function () {
-  console.log('statics getAverageCost(), post save, CourseSchema');
   await this.constructor.getAverageCost(this.bootcamp);
 });
 
 // Call getAverageCost before remove operation of Course
 CourseSchema.pre('remove', async function (next) {
-  console.log('statics getAverageCost(), pre remove, CourseSchema');
   await this.constructor.getAverageCost(this.bootcamp);
   next();
 });

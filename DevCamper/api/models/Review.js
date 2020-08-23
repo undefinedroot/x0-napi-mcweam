@@ -42,37 +42,27 @@ ReviewSchema.statics.getAverageRating = async function (bootcampId) {
   // initiate aggregation
   const obj =
     await this.aggregate([
-      {
-        $match: {
-          bootcamp: bootcampId  /* match the id */
-        }
-      },
+      { $match: { bootcamp: bootcampId } }, /* match the id */
       {
         $group: {
           _id: '$bootcamp',
-          averageRating: {
-            $avg: '$rating'
-          }
+          averageRating: { $avg: '$rating' }
         }
       }
     ]);
 
-  console.log(obj[0].averageRating);
-
   try {
-    console.log('trying to update rating');
     let avgRating = 0;
-    if (typeof obj[0].averageRating !== undefined) {
+
+    if (obj) { // TODO: how to detect if no more reviews, because it still goes below
+      // Cannot read property 'averageRating' of undefined
       avgRating = obj[0].averageRating;
     }
-    console.log(`avgRating: ${avgRating}`);
 
     await this.model('Bootcamp')
       .findByIdAndUpdate(
         bootcampId,
-        {
-          averageRating: avgRating
-        }
+        { averageRating: avgRating }
       );
   } catch (err) {
     console.error(err);
@@ -81,21 +71,14 @@ ReviewSchema.statics.getAverageRating = async function (bootcampId) {
 
 // Call getAverageRating after save operation of Review
 ReviewSchema.post('save', async function () {
-  console.log('statics getAverageRating(), post save, ReviewSchema');
   await this.constructor.getAverageRating(this.bootcamp);
 });
 
-ReviewSchema.post('update', async function () {
-  console.log('statics getAverageRating(), post update, ReviewSchema');
+// Call getAverageRating after remove operation of Review
+ReviewSchema.post('remove', async function () {
+  console.log(`removing this review ${this.id}`);
+  console.log(`removing this review with bootcamp of ${this.bootcamp}`);
   await this.constructor.getAverageRating(this.bootcamp);
-});
-
-
-// Call getAverageRating before remove operation of Review
-ReviewSchema.pre('remove', async function (next) {
-  console.log('statics getAverageRating(), pre remove, ReviewSchema');
-  await this.constructor.getAverageRating(this.bootcamp);
-  next();
 });
 
 module.exports = mongoose.model('Review', ReviewSchema);

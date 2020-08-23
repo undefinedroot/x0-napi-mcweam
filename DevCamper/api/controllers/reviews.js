@@ -83,6 +83,9 @@ exports.updateReview = asyncHandler(async (req, res, next) => {
   review = await Review.findOneAndUpdate({ _id: req.params.id }, req.body, {
     new: true,
     runValidators: true
+  }, async function (err, doc, res) {
+    // we can't use any middleware during update, so trigger the recalculation of averageRating here
+    await Review.getAverageRating(doc.bootcamp);
   });
 
   res.status(201).json({
