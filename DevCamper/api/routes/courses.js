@@ -1,5 +1,6 @@
 const
   express = require('express'),
+  { ROLE } = require('../utils/rolesEnum'),
   {
     getCourses,
     getCourse,
@@ -20,11 +21,11 @@ const router = express.Router({ mergeParams: true });
 router.route('/')
   /* using middleware for this method, passing the 'Course model' and 'object relationship' */
   .get(advancedResults(Course, { path: 'bootcamp', select: 'name description' }), getCourses)
-  .post(protectRoute, authorizeRoute('publisher', 'admin'), addCourse);
+  .post(protectRoute, authorizeRoute(ROLE.PUBLISHER, ROLE.ADMIN), addCourse);
 
 router.route('/:id')
   .get(getCourse)
-  .put(protectRoute, authorizeRoute('publisher', 'admin'), updateCourse)
-  .delete(protectRoute, authorizeRoute('publisher', 'admin'), deleteCourse);
+  .put(protectRoute, authorizeRoute(ROLE.PUBLISHER, ROLE.ADMIN), updateCourse)
+  .delete(protectRoute, authorizeRoute(ROLE.PUBLISHER, ROLE.ADMIN), deleteCourse);
 
 module.exports = router;

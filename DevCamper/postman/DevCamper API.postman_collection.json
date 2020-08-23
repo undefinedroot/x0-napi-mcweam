@@ -443,7 +443,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"p1\",\r\n    \"email\": \"e2@z.com\",\r\n    \"password\": \"qqqqqq\",\r\n    \"role\": \"publisher\"\r\n}",
+							"raw": "{\r\n    \"name\": \"u2\",\r\n    \"email\": \"e3@z.com\",\r\n    \"password\": \"qqqqqq\",\r\n    \"role\": \"user\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -489,7 +489,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"e1@z.com\",\r\n    \"password\": \"qqqqqq\"\r\n}",
+							"raw": "{\r\n    \"email\": \"p1@z.com\",\r\n    \"password\": \"qqqqqq\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -901,12 +901,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5d713995b721c3bb38c1f5d0/reviews",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}/5f41fc1aa4faaf1478ef5692/reviews",
 							"host": [
 								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
 							"path": [
-								"5d713995b721c3bb38c1f5d0",
+								"5f41fc1aa4faaf1478ef5692",
 								"reviews"
 							]
 						},
@@ -956,19 +956,97 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Nice Bootcamp\",\r\n    \"text\": \"this is a test\",\r\n    \"rating\": 1\r\n}"
+							"raw": "{\r\n    \"title\": \"Nice Bootcamp\",\r\n    \"text\": \"this is a test\",\r\n    \"rating\": 8\r\n}"
 						},
 						"url": {
-							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}\\5d725a1b7b292f5f8ceff788\\reviews",
+							"raw": "{{URL}}{{BOOTCAMP_API_PATH}}\\5f4204671ad3d80facac3f89\\reviews",
 							"host": [
 								"{{URL}}{{BOOTCAMP_API_PATH}}"
 							],
 							"path": [
-								"5d725a1b7b292f5f8ceff788",
+								"5f4204671ad3d80facac3f89",
 								"reviews"
 							]
 						},
 						"description": "Insert review for a specific bootcamp"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"weh? 2\",\r\n    \"text\": \"not really good\",\r\n    \"rating\": 1\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}{{REVIEWS_API_PATH}}/5f4204c81ad3d80facac3f8d",
+							"host": [
+								"{{URL}}{{REVIEWS_API_PATH}}"
+							],
+							"path": [
+								"5f4204c81ad3d80facac3f8d"
+							]
+						},
+						"description": "Update review in database"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}{{REVIEWS_API_PATH}}/5f4204ab1ad3d80facac3f8c",
+							"host": [
+								"{{URL}}{{REVIEWS_API_PATH}}"
+							],
+							"path": [
+								"5f4204ab1ad3d80facac3f8c"
+							]
+						},
+						"description": "Remove review from database"
 					},
 					"response": []
 				}

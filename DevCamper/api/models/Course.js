@@ -17,7 +17,9 @@ const CourseSchema = new mongoose.Schema({
   },
   tuition: {
     type: Number,
-    required: [true, 'Please add a tuition cost']
+    min: 0,
+    required: [true, 'Please add a tuition cost'],
+    default: 0
   },
   minimumSkill: {
     type: String,
@@ -65,11 +67,16 @@ CourseSchema.statics.getAverageCost = async function (bootcampId) {
     ]);
 
   try {
+    let avgCost = 0;
+    if (typeof obj[0].averageCost !== undefined) {
+      avgCost = Math.ceil(obj[0].averageCost / 10) * 10   /* to get a whole number value */
+    }
+
     await this.model('Bootcamp')
       .findByIdAndUpdate(
         bootcampId,
         {
-          averageCost: Math.ceil(obj[0].averageCost / 10) * 10   /* to get a whole number value */
+          averageCost: avgCost
         }
       );
   } catch (err) {
@@ -78,13 +85,16 @@ CourseSchema.statics.getAverageCost = async function (bootcampId) {
 };
 
 // Call getAverageCost after save operation of Course
-CourseSchema.post('save', function () {
-  this.constructor.getAverageCost(this.bootcamp);
+CourseSchema.post('save', async function () {
+  console.log('statics getAverageCost(), post save, CourseSchema');
+  await this.constructor.getAverageCost(this.bootcamp);
 });
 
 // Call getAverageCost before remove operation of Course
-CourseSchema.pre('remove', function () {
-  this.constructor.getAverageCost(this.bootcamp);
+CourseSchema.pre('remove', async function (next) {
+  console.log('statics getAverageCost(), pre remove, CourseSchema');
+  await this.constructor.getAverageCost(this.bootcamp);
+  next();
 });
 
 module.exports = mongoose.model('Course', CourseSchema);

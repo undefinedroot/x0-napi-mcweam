@@ -1,5 +1,6 @@
 const
   express = require('express'),
+  { ROLE } = require('../utils/rolesEnum'),
   {
     getUsers,
     getUser,
@@ -18,7 +19,7 @@ const router = express.Router();
 
 // anything below will use these middlewares
 router.use(protectRoute);
-router.use(authorizeRoute('admin'));
+router.use(authorizeRoute(ROLE.ADMIN));
 
 router
   .route('/')
