@@ -7,7 +7,13 @@ const
   errorHandler = require('./middleware/errorHandler'),
   connectDB = require('./config/db'),
   fileupload = require('express-fileupload'),
-  cookieParser = require('cookie-parser');
+  cookieParser = require('cookie-parser'),
+  mongoSanitize = require('express-mongo-sanitize'),
+  helmet = require('helmet'),
+  xss = require('xss-clean'),
+  rateLimit = require('express-rate-limit'),
+  hpp = require('hpp'),
+  cors = require('cors');
 
 // Load env vars, IMPORTANT: load this before any connection or importing of routes
 dotenv.config({ path: './config/config.env' });
@@ -39,6 +45,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // cookie parser
 app.use(cookieParser());
+
+// prevent nosql injection by sanitizing request data
+app.use(mongoSanitize());
+
+// set secure HTTP headers
+app.use(helmet());
+
+// prevent XSS
+app.use(xss());
+
+// rate limiting
+app.use(rateLimit({
+  windowMs: 10 * 60 * 1000, /* 10 minutes */
+  max: 100 /* maximum number of requests per windowMs */
+}));
+
+// prevent http parameter pollution
+app.use(hpp());
+
+// enable CORS (so that others can connect to this api on a different domain because this is a public api)
+app.use(cors());
 
 // remove x-powered-by on response headers so that info about this running Express is not shown
 app.disable('x-powered-by');
